@@ -6,12 +6,12 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WebEx.Data;
-using WebEx.Data.Components;
+using WebEx.Data.UnitOfWork;
 using WebEx.Interfaces.Interfaces;
 using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.WebEx.Interfaces;
 
-namespace WebEx.Data.Repositories
+namespace WebEx.Data
 {
     public class EntityFrameworkRepository : IRepository
     {

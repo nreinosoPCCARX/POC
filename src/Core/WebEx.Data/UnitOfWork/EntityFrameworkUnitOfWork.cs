@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebEx.Interfaces.Interfaces;
 
-namespace WebEx.Data.Components
+namespace WebEx.Data.UnitOfWork
 {
     public class EntityFrameworkUnitOfWork : IUnitOfWork
     {

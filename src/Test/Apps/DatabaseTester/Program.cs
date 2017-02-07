@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebEx.Data;
-using WebEx.Data.Repositories;
 using WebEx.Interfaces.Models;
 
 namespace DatabaseTester
@@ -13,7 +12,7 @@ namespace DatabaseTester
     {
         public static void Main()
         {
-            var repo = new EntityFrameworkRepository();
+            var repo = new EntityFrameworkRepository(null);
 
             repo.Add(new Person { FirstName = "Weeeeeeeeeeeeeeee" });
 

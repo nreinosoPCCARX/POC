@@ -51,11 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\EntityFrameworkUnitOfWork.cs" />
-    <Compile Include="Components\EntityFrameworkUnitOfWorkProvider.cs" />
+    <Compile Include="EntityFrameworkRepository.cs" />
     <Compile Include="ExDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Components\EntityFrameworkRepository.cs" />
+    <Compile Include="UnitOfWork\EntityFrameworkUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\EntityFrameworkUnitOfWorkProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
