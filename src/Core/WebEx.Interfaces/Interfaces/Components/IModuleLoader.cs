@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebEx.Components
+namespace WebEx.Interfaces.Components.Interfaces
 {
-    public class Class1
+    public interface IModuleLoader
     {
     }
 }

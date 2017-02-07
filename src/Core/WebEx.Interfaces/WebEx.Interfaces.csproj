@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ComponentAttribute.cs" />
+    <Compile Include="Interfaces\Components\ILogger.cs" />
+    <Compile Include="Interfaces\Components\IModuleLoader.cs" />
+    <Compile Include="Interfaces\Modules\IModule.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IUnitOfWorkProvider.cs" />
@@ -65,6 +69,7 @@
     <Compile Include="Models\Website.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

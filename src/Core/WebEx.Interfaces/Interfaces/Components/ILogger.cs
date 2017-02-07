@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebEx.Util
+namespace WebEx.Interfaces.Interfaces.Components
 {
-    public class Class1
+    public interface ILogger
     {
+        void Log(string message);
     }
 }
