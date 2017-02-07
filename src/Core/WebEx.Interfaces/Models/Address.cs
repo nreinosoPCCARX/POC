@@ -1,12 +1,10 @@
-namespace WebEx.Data.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-    public partial class Address
+namespace WebEx.Interfaces.Models
+{
+    public class Address
     {
         public int Id { get; set; }
 

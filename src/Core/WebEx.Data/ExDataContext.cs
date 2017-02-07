@@ -1,11 +1,12 @@
-namespace WebEx.Data.Models
-{
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using WebEx.Interfaces.Models;
 
-    public partial class ExDataContext : DbContext
+namespace WebEx.Data
+{
+    public class ExDataContext : DbContext
     {
         public ExDataContext()
             : base("name=ExDataContext")
