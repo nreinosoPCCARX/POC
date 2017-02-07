@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using WebEx.Interfaces.Models;
+using WebEx.Interfaces.Models.Interfaces;
+using WebEx.Interfaces.Models.Enums;
 
 namespace WebEx.Data
 {
@@ -24,7 +26,61 @@ namespace WebEx.Data
         public virtual DbSet<StateProvince> StateProvinces { get; set; }
         public virtual DbSet<Website> Websites { get; set; }
 
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
 
+            foreach (var entity in ChangeTracker.Entries<IArchivable>())
+            {
+                switch (entity.State)
+                {
+                    case EntityState.Added:
+                        var archivable = entity.Entity as IArchivable;
+                        archivable.IsCurrent = true;
+                        archivable.State = ArchiveState.Added;
+                        archivable.AuditLog.TimeStamp = DateTime.UtcNow;
+                        archivable.AuditLog.UserName = "GetSomehowAdded...";
+                        break;
+                    case EntityState.Modified:
+                        var cloned = entity.Entity.Clone() as IArchivable;
+                        cloned.State = ArchiveState.Modified;
+                        cloned.IsCurrent = true;
+                        cloned.AuditLog.TimeStamp = DateTime.UtcNow;
+                        cloned.AuditLog.UserName = "GetSomehowModified...";
+                        cloned.ParentId = entity.Entity.Id;
+                        cloned.BaseParentId = cloned.BaseParentId ?? entity.Entity.Id;
+                        cloned.Id = 0;
+                        Set(cloned.GetType()).Add(cloned);
+
+                        //entity.CurrentValues.SetValues(entity.OriginalValues);
+                        entity.Reload();
+                        var changed = entity.Entity as IArchivable;
+                        changed.IsCurrent = false;
+                        entity.State = EntityState.Modified;
+                        break;
+                    case EntityState.Deleted:
+                        var deleted = entity.Entity.Clone() as IArchivable;
+                        deleted.State = ArchiveState.Removed;
+                        deleted.IsCurrent = true;
+                        deleted.IsRemoved = true;
+                        deleted.AuditLog.TimeStamp = DateTime.UtcNow;
+                        deleted.AuditLog.UserName = "GetSomehowDeleted...";
+                        deleted.ParentId = entity.Entity.Id;
+                        deleted.BaseParentId = deleted.BaseParentId ?? entity.Entity.Id;
+                        deleted.Id = 0;
+                        Set(deleted.GetType()).Add(deleted);
+
+                        //entity.CurrentValues.SetValues(entity.OriginalValues);
+                        entity.Reload();
+                        var parent = entity.Entity as IArchivable;
+                        parent.IsCurrent = false;
+                        entity.State = EntityState.Modified;
+                        break;
+                }
+            }
+
+            return base.SaveChanges();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WebEx.Data;
+using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.WebEx.Interfaces;
 
 namespace WebEx.Data.Repositories
@@ -46,12 +47,11 @@ namespace WebEx.Data.Repositories
             }
         }
 
-        public T GetById<T>(long id) where T : class
+        public T GetById<T>(long id) where T : class, IDomain
         {
             using (var context = new ExDataContext())
             {
-                var dbSet = context.Set<T>();
-                return dbSet.Find(new[] { id });
+                return context.Set<T>().SingleOrDefault(e => e.Id == id);
             }
         }
 
@@ -71,7 +71,16 @@ namespace WebEx.Data.Repositories
 
         public void Update<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            using (var context = new ExDataContext())
+            {
+                var dbSet = context.Set<T>();
+                if (dbSet != null)
+                {
+                    var attached = dbSet.Attach(entity);
+                    context.Entry(attached).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 
