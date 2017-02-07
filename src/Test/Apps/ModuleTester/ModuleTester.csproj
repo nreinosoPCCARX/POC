@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D92BF4FB-5FDF-4681-A6EE-5C978AF1FE3B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebEx.Person.Module</RootNamespace>
-    <AssemblyName>WebEx.Person.Module</AssemblyName>
+    <RootNamespace>ModuleTester</RootNamespace>
+    <AssemblyName>ModuleTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>$(SolutionDir)Out\Run\$(Configuration)</OutputPath>
@@ -30,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,13 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersonModule.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\WebEx.IoC\WebEx.IoC.csproj">
+      <Project>{2b69f1f1-5f85-4a46-a732-8424236d5437}</Project>
+      <Name>WebEx.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\WebEx.Util\WebEx.Util.csproj">
+      <Project>{e5c4e6ee-df10-4669-8464-d77f03cec22b}</Project>
+      <Name>WebEx.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

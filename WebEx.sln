@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Person.Module", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.IoC", "src\Core\WebEx.IoC\WebEx.IoC.csproj", "{2B69F1F1-5F85-4A46-A732-8424236D5437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleTester", "src\Test\Apps\ModuleTester\ModuleTester.csproj", "{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{2B69F1F1-5F85-4A46-A732-8424236D5437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B69F1F1-5F85-4A46-A732-8424236D5437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B69F1F1-5F85-4A46-A732-8424236D5437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,5 +100,6 @@ Global
 		{E5C4E6EE-DF10-4669-8464-D77F03CEC22B} = {CD9C0C78-7847-43F3-9DF4-3F467F9E7BD0}
 		{D92BF4FB-5FDF-4681-A6EE-5C978AF1FE3B} = {A978BC17-4952-41A5-B121-AC1317954A22}
 		{2B69F1F1-5F85-4A46-A732-8424236D5437} = {CD9C0C78-7847-43F3-9DF4-3F467F9E7BD0}
+		{15F8B3B4-B43E-48FB-8D7E-2C7533447D57} = {EF8D9EFD-34EC-4ACB-AF35-594CAA88EE93}
 	EndGlobalSection
 EndGlobal

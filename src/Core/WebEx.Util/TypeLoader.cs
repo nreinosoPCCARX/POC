@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Pcca.Core.Utilities
+namespace WebEx.Util
 {
     public static class TypeLoader
     {
@@ -25,7 +25,10 @@ namespace Pcca.Core.Utilities
 
                     if (helper != null)
                     {
-                        foreach (var typeName in helper.FindTypes(type.AssemblyQualifiedName, path, searchPattern))
+                        string[] types;
+                        helper.FindTypes(type.AssemblyQualifiedName, path, searchPattern, out types);
+
+                        foreach (var typeName in types)
                         {
                             list.Add(Type.GetType(typeName));
                         }
@@ -40,8 +43,10 @@ namespace Pcca.Core.Utilities
 
         public class TypeLoaderHelper : MarshalByRefObject
         {
-            public IEnumerable<string> FindTypes(string typeName, string path, string searchPattern)
+            public void FindTypes(string typeName, string path, string searchPattern, out string[] types)
             {
+                var typeList = new List<string>();
+
                 if (!string.IsNullOrEmpty(typeName) && !string.IsNullOrEmpty(path) && !string.IsNullOrEmpty(searchPattern))
                 {
                     var searchingType = Type.GetType(typeName);
@@ -50,17 +55,19 @@ namespace Pcca.Core.Utilities
                     {
                         var fileInfo = new FileInfo(fileName);
 
-                        if (fileInfo.Extension == "dll")
+                        if (fileInfo.Extension.EndsWith(".dll", StringComparison.Ordinal))
                         {
                             var assembly = Assembly.LoadFrom(fileName);  //TODO: Verify assembly signature after loading, might only be able to in release mode :S
 
                             foreach (var foundType in assembly.GetTypes().Where(t => t != searchingType && searchingType.IsAssignableFrom(t)))
                             {
-                                yield return foundType.AssemblyQualifiedName;
+                                typeList.Add(foundType.AssemblyQualifiedName);
                             }
                         }
                     }
                 }
+
+                types = typeList.ToArray();
             }
         }
     }
