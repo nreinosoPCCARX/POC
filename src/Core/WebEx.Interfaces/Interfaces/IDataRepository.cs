@@ -14,6 +14,7 @@ namespace WebEx.Interfaces
             void Add<T>(T entity) where T : class;
             IEnumerable<T> GetAll<T>() where T : class;
             T GetById<T>(long id) where T : class;
+            IEnumerable<T> Find<T>() where T : class;
             void Update<T>(T entity) where T : class;
             void Remove<T>(T entity) where T : class;
         }
