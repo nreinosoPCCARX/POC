@@ -9,7 +9,7 @@ namespace WebEx.Data
     public class ExDataContext : DbContext
     {
         public ExDataContext()
-            : base("name=ExDataContext")
+            : base("name=Default")
         {
         }
 
@@ -23,6 +23,8 @@ namespace WebEx.Data
         public virtual DbSet<Phone> Phones { get; set; }
         public virtual DbSet<StateProvince> StateProvinces { get; set; }
         public virtual DbSet<Website> Websites { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

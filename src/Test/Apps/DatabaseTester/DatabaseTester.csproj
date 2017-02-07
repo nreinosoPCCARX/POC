@@ -4,34 +4,36 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADA6C696-0FC0-46E5-B03C-38851449926C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{719CC4A5-F5DA-49EE-B1B0-D6F75DAC172C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebEx.Interfaces</RootNamespace>
-    <AssemblyName>WebEx.Interfaces</AssemblyName>
+    <RootNamespace>DatabaseTester</RootNamespace>
+    <AssemblyName>DatabaseTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)Out\Run\$(Configuration)</OutputPath>
+    <OutputPath>$(SolutionDir)Out\Test\Apps\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)Out\Run\$(Configuration)</OutputPath>
+    <OutputPath>$(SolutionDir)Out\Test\Apps\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,28 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IDataRepository.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Interfaces\IUnitOfWorkProvider.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\Base\ArchivableBase.cs" />
-    <Compile Include="Models\Interfaces\IAuditable.cs" />
-    <Compile Include="Models\ComplexTypes\AuditInfo.cs" />
-    <Compile Include="Models\Base\DomainBase.cs" />
-    <Compile Include="Models\Interfaces\IArchivable.cs" />
-    <Compile Include="Models\Interfaces\IDomain.cs" />
-    <Compile Include="Models\Interfaces\IRemovable.cs" />
-    <Compile Include="Models\City.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\Enums\ArchiveState.cs" />
-    <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\Organization.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Phone.cs" />
-    <Compile Include="Models\StateProvince.cs" />
-    <Compile Include="Models\Website.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\WebEx.Data\WebEx.Data.csproj">
+      <Project>{ea8807fd-aee8-4bfb-87f5-0e78d54c4af5}</Project>
+      <Name>WebEx.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
+      <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
+      <Name>WebEx.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

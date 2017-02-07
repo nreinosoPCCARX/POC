@@ -24,6 +24,11 @@ namespace WebEx.Data.Repositories
             }
         }
 
+        public IEnumerable<T> Find<T>() where T : class
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<T> GetAll<T>() where T : class
         {
             using (var context = new ExDataContext())

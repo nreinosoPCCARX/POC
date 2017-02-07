@@ -13,6 +13,11 @@ namespace WebEx.API.MockData
             throw new NotImplementedException();
         }
 
+        public IEnumerable<T> Find<T>() where T : class
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<T> GetAll<T>() where T : class
         {
             throw new NotImplementedException();
