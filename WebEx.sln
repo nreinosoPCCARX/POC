@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Data", "WebEx.Data\WebEx.Data.csproj", "{EA8807FD-AEE8-4BFB-87F5-0E78D54C4AF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Data", "src\Core\WebEx.Data\WebEx.Data.csproj", "{EA8807FD-AEE8-4BFB-87F5-0E78D54C4AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
