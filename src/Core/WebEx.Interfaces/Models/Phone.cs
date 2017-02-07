@@ -1,9 +1,9 @@
+using WebEx.Interfaces.Models.Base;
+
 namespace WebEx.Interfaces.Models
 {
-    public class Phone
+    public class Phone : DomainBase
     {
-        public int Id { get; set; }
-
         public int PhoneType { get; set; }
 
         public string PhoneNumber { get; set; }
@@ -12,12 +12,8 @@ namespace WebEx.Interfaces.Models
 
         public string CountryCode { get; set; }
 
-        public int? Organization_Id { get; set; }
+        public Organization Organization { get; set; }
 
-        public int? Person_Id { get; set; }
-
-        public virtual Organization Organization { get; set; }
-
-        public virtual Person Person { get; set; }
+        public Person Person { get; set; }
     }
 }

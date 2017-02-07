@@ -1,15 +1,14 @@
 using System.Collections.Generic;
+using WebEx.Interfaces.Models.Base;
 
 namespace WebEx.Interfaces.Models
 {
-    public class City
+    public class City : DomainBase
     {
         public City()
         {
             Addresses = new HashSet<Address>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -17,10 +16,8 @@ namespace WebEx.Interfaces.Models
 
         public string PostalCode { get; set; }
 
-        public int? StateProvnice_Id { get; set; }
+        public ICollection<Address> Addresses { get; set; }
 
-        public virtual ICollection<Address> Addresses { get; set; }
-
-        public virtual StateProvince StateProvince { get; set; }
+        public StateProvince StateProvince { get; set; }
     }
 }
