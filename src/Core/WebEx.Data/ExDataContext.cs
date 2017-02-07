@@ -28,78 +28,63 @@ namespace WebEx.Data
         {
             modelBuilder.Entity<City>()
                 .HasMany(e => e.Addresses)
-                .WithRequired(e => e.City)
-                .HasForeignKey(e => e.City_Id);
+                .WithRequired(e => e.City);
 
             modelBuilder.Entity<Country>()
                 .HasMany(e => e.Addresses)
-                .WithRequired(e => e.Country)
-                .HasForeignKey(e => e.Country_Id);
+                .WithRequired(e => e.Country);
 
             modelBuilder.Entity<Country>()
                 .HasMany(e => e.StateProvinces)
-                .WithOptional(e => e.Country)
-                .HasForeignKey(e => e.Country_Id);
+                .WithOptional(e => e.Country);
 
             modelBuilder.Entity<Organization>()
                 .HasMany(e => e.Addresses)
-                .WithOptional(e => e.Organization)
-                .HasForeignKey(e => e.Organization_Id);
+                .WithOptional(e => e.Organization);
 
             modelBuilder.Entity<Organization>()
                 .HasMany(e => e.Emails)
-                .WithOptional(e => e.Organization)
-                .HasForeignKey(e => e.Organization_Id);
+                .WithOptional(e => e.Organization);
 
             modelBuilder.Entity<Organization>()
                 .HasMany(e => e.Notes)
-                .WithOptional(e => e.Organization)
-                .HasForeignKey(e => e.Organization_Id);
+                .WithOptional(e => e.Organization);
 
             modelBuilder.Entity<Organization>()
                 .HasMany(e => e.Phones)
-                .WithOptional(e => e.Organization)
-                .HasForeignKey(e => e.Organization_Id);
+                .WithOptional(e => e.Organization);
 
             modelBuilder.Entity<Organization>()
                 .HasMany(e => e.Websites)
-                .WithOptional(e => e.Organization)
-                .HasForeignKey(e => e.Organization_Id);
+                .WithOptional(e => e.Organization);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Addresses)
-                .WithOptional(e => e.Person)
-                .HasForeignKey(e => e.Person_Id);
+                .WithOptional(e => e.Person);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Emails)
-                .WithOptional(e => e.Person)
-                .HasForeignKey(e => e.Person_Id);
+                .WithOptional(e => e.Person);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Notes)
-                .WithOptional(e => e.Person)
-                .HasForeignKey(e => e.Person_Id);
+                .WithOptional(e => e.Person);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Phones)
-                .WithOptional(e => e.Person)
-                .HasForeignKey(e => e.Person_Id);
+                .WithOptional(e => e.Person);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Websites)
-                .WithOptional(e => e.Person)
-                .HasForeignKey(e => e.Person_Id);
+                .WithOptional(e => e.Person);
 
             modelBuilder.Entity<StateProvince>()
                 .HasMany(e => e.Addresses)
-                .WithRequired(e => e.StateProvince)
-                .HasForeignKey(e => e.StateProvince_Id);
+                .WithRequired(e => e.StateProvince);
 
             modelBuilder.Entity<StateProvince>()
                 .HasMany(e => e.Cities)
-                .WithOptional(e => e.StateProvince)
-                .HasForeignKey(e => e.StateProvnice_Id);
+                .WithOptional(e => e.StateProvince);
         }
     }
 }

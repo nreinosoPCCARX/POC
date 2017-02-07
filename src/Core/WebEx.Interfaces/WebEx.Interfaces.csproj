@@ -43,9 +43,17 @@
   <ItemGroup>
     <Compile Include="Interfaces\IDataRepository.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Base\ArchivableBase.cs" />
+    <Compile Include="Models\Interfaces\IAuditable.cs" />
+    <Compile Include="Models\ComplexTypes\AuditInfo.cs" />
+    <Compile Include="Models\Base\DomainBase.cs" />
+    <Compile Include="Models\Interfaces\IArchivable.cs" />
+    <Compile Include="Models\Interfaces\IDomain.cs" />
+    <Compile Include="Models\Interfaces\IRemovable.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Enums\ArchiveState.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\Person.cs" />
