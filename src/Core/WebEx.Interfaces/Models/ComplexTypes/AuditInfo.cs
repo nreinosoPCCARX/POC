@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebEx.Interfaces.Models.ComplexTypes
 {
+    [ComplexType]
     public class AuditInfo
     {
         public string UserName { get; set; }
