@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WebEx.Data;
@@ -29,11 +30,19 @@ namespace WebEx.Data.Repositories
             throw new NotImplementedException();
         }
 
+        public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<T> GetAll<T>() where T : class
         {
             using (var context = new ExDataContext())
             {
-                return context.Set<T>().AsEnumerable<T>();
+                foreach (var entity in context.Set<T>().AsEnumerable())
+                {
+                    yield return entity;
+                }
             }
         }
 
