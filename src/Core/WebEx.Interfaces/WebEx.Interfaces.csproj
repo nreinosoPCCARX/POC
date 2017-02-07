@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\IUnitOfWorkProvider.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Base\ArchivableBase.cs" />
+    <Compile Include="Models\Base\ComplexTypeBase.cs" />
     <Compile Include="Models\Interfaces\IAuditable.cs" />
     <Compile Include="Models\ComplexTypes\AuditInfo.cs" />
     <Compile Include="Models\Base\DomainBase.cs" />

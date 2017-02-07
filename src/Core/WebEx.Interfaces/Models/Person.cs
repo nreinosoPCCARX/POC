@@ -4,7 +4,7 @@ using WebEx.Interfaces.Models.Base;
 
 namespace WebEx.Interfaces.Models
 {
-    public class Person : DomainBase
+    public class Person : ArchivableBase
     {
         public Person()
         {

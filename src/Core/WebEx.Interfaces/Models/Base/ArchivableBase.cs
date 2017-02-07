@@ -6,6 +6,11 @@ namespace WebEx.Interfaces.Models.Base
 {
     public abstract class ArchivableBase : DomainBase, IArchivable
     {
+        protected ArchivableBase()
+        {
+            AuditLog = new AuditInfo();
+        }
+
         public AuditInfo AuditLog { get; set; }
 
         public bool IsCurrent { get; set; }
@@ -13,5 +18,9 @@ namespace WebEx.Interfaces.Models.Base
         public bool IsRemoved { get; set; }
 
         public ArchiveState State { get; set; }
+
+        public long? ParentId { get; set; }
+
+        public long? BaseParentId { get; set; }
     }
 }

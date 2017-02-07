@@ -15,11 +15,18 @@ namespace DatabaseTester
         {
             var repo = new EntityFrameworkRepository();
 
-            repo.Add(new Person());
+            repo.Add(new Person { FirstName = "Weeeeeeeeeeeeeeee" });
 
-            foreach(var person in repo.GetAll<Person>())
+            for (int i = 0; i < 10000; i++)
             {
-                Console.WriteLine($"Persion Id = {person.Id}");
+                foreach (var person in repo.GetAll<Person>().Where(p => p.IsCurrent))
+                {
+                    Console.WriteLine($"Persion Id = {person.Id}");
+
+                    person.NickName = $"{i}___WEEEEEeeeeeee {DateTime.Now.ToString()}";
+
+                    repo.Update(person);
+                }
             }
 
             Console.WriteLine("Press Enter to Exit");
