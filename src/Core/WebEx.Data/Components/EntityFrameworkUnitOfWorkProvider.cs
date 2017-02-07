@@ -9,6 +9,9 @@ namespace WebEx.Data.Components
 {
     public class EntityFrameworkUnitOfWorkProvider : IUnitOfWorkProvider
     {
-
+        public IUnitOfWork Create()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
