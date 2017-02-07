@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebEx.Interfaces.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface ISession
     {
 
     }

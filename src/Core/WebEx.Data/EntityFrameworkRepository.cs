@@ -6,6 +6,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WebEx.Data;
+using WebEx.Data.Components;
+using WebEx.Interfaces.Interfaces;
 using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.WebEx.Interfaces;
 
@@ -13,6 +15,13 @@ namespace WebEx.Data.Repositories
 {
     public class EntityFrameworkRepository : IRepository
     {
+        private EntityFrameworkUnitOfWork _unitOfWork;
+
+        public EntityFrameworkRepository(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = (EntityFrameworkUnitOfWork)unitOfWork;
+        }
+
         public void Add<T>(T entity) where T : class
         {
             using (var context = new ExDataContext())
