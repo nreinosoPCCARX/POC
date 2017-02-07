@@ -10,7 +10,7 @@ namespace WebEx.API.Controllers
 {
     public class PeopleController : ApiController
     {
-        IDataRepository repo = new MockDbContext();
+        IRepository repo = new MockDbContext();
         
         // GET: api/People
         public IEnumerable<Person> Get()

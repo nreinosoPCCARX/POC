@@ -8,5 +8,6 @@ namespace WebEx.Interfaces.Interfaces
 {
     public interface IUnitOfWorkProvider
     {
+        IUnitOfWork Create();
     }
 }

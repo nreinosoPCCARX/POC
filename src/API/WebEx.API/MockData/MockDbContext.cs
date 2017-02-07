@@ -6,7 +6,7 @@ using WebEx.Interfaces.WebEx.Interfaces;
 
 namespace WebEx.API.MockData
 {
-    public class MockDbContext : IDataRepository
+    public class MockDbContext : IRepository
     {
         public void Add<T>(T entity) where T : class
         {

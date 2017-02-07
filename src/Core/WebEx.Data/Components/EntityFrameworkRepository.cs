@@ -10,7 +10,7 @@ using WebEx.Interfaces.WebEx.Interfaces;
 
 namespace WebEx.Data.Repositories
 {
-    public class EntityFrameworkRepository : IDataRepository
+    public class EntityFrameworkRepository : IRepository
     {
         public void Add<T>(T entity) where T : class
         {

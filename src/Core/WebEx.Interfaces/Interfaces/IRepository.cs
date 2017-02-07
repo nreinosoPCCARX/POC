@@ -10,7 +10,7 @@ namespace WebEx.Interfaces
 
     namespace WebEx.Interfaces
     {
-        public interface IDataRepository
+        public interface IRepository
         {
             void Add<T>(T entity) where T : class;
             IEnumerable<T> GetAll<T>() where T : class;
