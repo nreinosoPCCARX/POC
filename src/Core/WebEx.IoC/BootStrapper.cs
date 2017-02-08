@@ -8,27 +8,9 @@ using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.IoC
 {
-    public class Bootstrapper
+    public static class Bootstrapper
     {
-        private static IKernel _kernel;
-
-        public Bootstrapper()
-        {
-            //the main components
-            _kernel = BuildKernel();
-
-            StartAllModules();
-        }
-
-        void StartAllModules()
-        {
-            foreach(var module in  _kernel.GetAll<IModule>())
-            {
-                //do something maybe?
-            }
-        }
-
-        IKernel BuildKernel()
+        public static IKernel BuildKernel()
         {
             var modules = new List<INinjectModule>();
 

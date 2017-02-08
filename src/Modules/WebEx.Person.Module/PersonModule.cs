@@ -1,9 +1,10 @@
-﻿using WebEx.Interfaces.Interfaces;
+﻿using System;
 using WebEx.Interfaces.Interfaces.Components;
+using WebEx.Person.Interface;
 
 namespace WebEx.Person.Module
 {
-    public class PersonModule : IModule
+    public class PersonModule : IPersonModule
     {
         readonly ILogger _logger;
 
@@ -12,6 +13,16 @@ namespace WebEx.Person.Module
             _logger = logger;
 
             _logger.Log("PersonModule Created");
+        }
+
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Stop()
+        {
+            throw new NotImplementedException();
         }
     }
 }

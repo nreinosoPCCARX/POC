@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
 using Ninject.Extensions.Conventions;
 using WebEx.Interfaces.Interfaces;
+using WebEx.Interfaces.Interfaces.Modules;
 
 namespace WebEx.IoC.NinjectModules
 {
@@ -13,6 +14,12 @@ namespace WebEx.IoC.NinjectModules
                           .InheritedFrom<IModule>()
                           .BindDefaultInterfaces()
                    );
+
+            Kernel.Bind(s => s.FromAssembliesMatching("*.UIModule.dll")
+              .SelectAllClasses()
+              .InheritedFrom<IUIModule>()
+              .BindDefaultInterfaces()
+       );
         }
     }
 }

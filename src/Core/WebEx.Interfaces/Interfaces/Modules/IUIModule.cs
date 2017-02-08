@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebEx.Interfaces.Interfaces.Modules
 {
-    public interface IModule
+    public interface IUIModule
     {
-        void Start();
-
-        void Stop();
     }
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADA6C696-0FC0-46E5-B03C-38851449926C}</ProjectGuid>
+    <ProjectGuid>{383753FB-2D90-481B-8352-C7CFE3B7A9FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebEx.Interfaces</RootNamespace>
-    <AssemblyName>WebEx.Interfaces</AssemblyName>
+    <RootNamespace>WebEx.Person.Interface</RootNamespace>
+    <AssemblyName>WebEx.Person.Interface</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,37 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\Components\ILogger.cs" />
-    <Compile Include="Interfaces\Components\IModuleLoader.cs" />
-    <Compile Include="Interfaces\ISession.cs" />
-    <Compile Include="Interfaces\Modules\IModule.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Interfaces\IUnitOfWorkProvider.cs" />
-    <Compile Include="Interfaces\Modules\IUIModule.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\Base\ArchivableBase.cs" />
-    <Compile Include="Models\Base\ComplexTypeBase.cs" />
-    <Compile Include="Models\Interfaces\IAuditable.cs" />
-    <Compile Include="Models\ComplexTypes\AuditInfo.cs" />
-    <Compile Include="Models\Base\DomainBase.cs" />
-    <Compile Include="Models\Interfaces\IArchivable.cs" />
-    <Compile Include="Models\Interfaces\IDomain.cs" />
-    <Compile Include="Models\Interfaces\IRemovable.cs" />
-    <Compile Include="Models\City.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\Enums\ArchiveState.cs" />
-    <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\Organization.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Phone.cs" />
-    <Compile Include="Models\StateProvince.cs" />
-    <Compile Include="Models\Website.cs" />
+    <Compile Include="IPersonModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Attributes\" />
+    <ProjectReference Include="..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
+      <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
+      <Name>WebEx.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
