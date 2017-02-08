@@ -1,5 +1,5 @@
 ﻿using System;
-using WebEx.Interfaces.Attributes;
+using WebEx.Components.Attributes;
 using WebEx.Interfaces.Interfaces.Components;
 
 namespace WebEx.Components

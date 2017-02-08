@@ -14,15 +14,7 @@ namespace ModuleTester
     {
         public static void Main()
         {
-            var booty = Bootstrapper.Instance;
-
-            var moduleLoader = booty.Kernel.Get<IModuleLoader>();
-            moduleLoader.LoadModules();
-
-            foreach(var module in booty.Kernel.GetAll<IModule>())
-            {
-                Console.WriteLine($"Module \"{module.GetType()}\" loaded");
-            }
+            var booty = new Bootstrapper();
 
             Console.WriteLine("Press Enter To Exit.");
             Console.ReadLine();

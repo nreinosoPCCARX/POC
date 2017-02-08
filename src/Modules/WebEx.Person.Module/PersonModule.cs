@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebEx.Interfaces.Interfaces;
+﻿using WebEx.Interfaces.Interfaces;
+using WebEx.Interfaces.Interfaces.Components;
 
 namespace WebEx.Person.Module
 {
     public class PersonModule : IModule
     {
+        readonly ILogger _logger;
+
+        public PersonModule(ILogger logger)
+        {
+            _logger = logger;
+
+            _logger.Log("PersonModule Created");
+        }
     }
 }

@@ -1,36 +1,45 @@
 ﻿using Ninject;
-using WebEx.Components;
-using WebEx.Interfaces.Interfaces.Components;
+using Ninject.Modules;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.IoC
 {
     public class Bootstrapper
     {
-        static Bootstrapper _instance;
+        private static IKernel _kernel;
 
-        public static Bootstrapper Instance
+        public Bootstrapper()
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new Bootstrapper();
-                }
+            //the main components
+            _kernel = BuildKernel();
 
-                return _instance;
+            StartAllModules();
+        }
+
+        void StartAllModules()
+        {
+            foreach(var module in  _kernel.GetAll<IModule>())
+            {
+                //do something maybe?
             }
         }
 
-
-        public IKernel Kernel { get; private set; }
-
-        private Bootstrapper()
+        IKernel BuildKernel()
         {
-            Kernel = new StandardKernel();
+            var modules = new List<INinjectModule>();
 
-            //the main components
-            Kernel.Bind<ILogger>().To<Logger>();
-            Kernel.Bind<IModuleLoader>().To<ModuleLoader>();
+            var types = Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(NinjectModule).IsAssignableFrom(t)).ToList();
+
+            foreach(var type in types)
+            {
+                modules.Add(Activator.CreateInstance(type) as INinjectModule);
+            }
+
+            return new StandardKernel(modules.ToArray());
         }
     }
 }
