@@ -6,7 +6,6 @@ using WebEx.Data;
 using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Interfaces.Components;
 using WebEx.Interfaces.Models;
-using WebEx.Interfaces.WebEx.Interfaces;
 using WebEx.IoC;
 
 namespace DatabaseTester

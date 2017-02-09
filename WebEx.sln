@@ -3,8 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Data", "src\Core\WebEx.Data\WebEx.Data.csproj", "{EA8807FD-AEE8-4BFB-87F5-0E78D54C4AF5}"
-EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5506237-EE49-4C54-A50B-A7C4CE86E839}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{A978BC17-4952-41A5-B121-AC1317954A22}"
@@ -13,17 +12,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CD9C0C78-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{89A9D660-7401-4360-8266-19CDA45801EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{EF8D9EFD-34EC-4ACB-AF35-594CAA88EE93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{ABD78F24-DDC4-4EA8-A499-FF376465C7AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{D8E0BC1A-098E-4FA7-83CA-228B427F6BB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTester", "src\Test\Apps\DatabaseTester\DatabaseTester.csproj", "{719CC4A5-F5DA-49EE-B1B0-D6F75DAC172C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Data", "src\Core\WebEx.Data\WebEx.Data.csproj", "{EA8807FD-AEE8-4BFB-87F5-0E78D54C4AF5}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Interfaces", "src\Core\WebEx.Interfaces\WebEx.Interfaces.csproj", "{ADA6C696-0FC0-46E5-B03C-38851449926C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Data.Test", "src\Test\WebEx.Data.Test\WebEx.Data.Test.csproj", "{6C54FCF4-DBA4-42C2-9D92-69621A317AF4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{ABD78F24-DDC4-4EA8-A499-FF376465C7AC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.API", "src\API\WebEx.API\WebEx.API.csproj", "{B86E09A7-8B41-40EF-829E-F4D201D1BCDD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{EF8D9EFD-34EC-4ACB-AF35-594CAA88EE93}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTester", "src\Test\Apps\DatabaseTester\DatabaseTester.csproj", "{719CC4A5-F5DA-49EE-B1B0-D6F75DAC172C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Components", "src\Core\WebEx.Components\WebEx.Components.csproj", "{29A13B38-9311-45BF-92E8-3A667AEA04F0}"
 EndProject
@@ -36,8 +39,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleTester", "src\Test\Apps\ModuleTester\ModuleTester.csproj", "{15F8B3B4-B43E-48FB-8D7E-2C7533447D57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Person.UIModule", "src\Modules\WebEx.Person.UIModule\WebEx.Person.UIModule.csproj", "{106224AF-AE57-4E57-B774-2A91544CDD44}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{D8E0BC1A-098E-4FA7-83CA-228B427F6BB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEx.Client", "src\Client\WebEx.Client\WebEx.Client.csproj", "{13C4C131-1FE8-4C0D-978A-6208D854B2D4}"
 EndProject
