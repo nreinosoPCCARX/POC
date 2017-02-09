@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using WebEx.Components;
 using WebEx.Data;
 using WebEx.DbContextScope;
 using WebEx.Interfaces.Models;
@@ -11,6 +12,10 @@ namespace DatabaseTester
     {
         public static void Main()
         {
+            var sessionManager = new UserSessionManager();
+
+            sessionManager.Loggin("Bob");
+
             var factory = new DbContextScopeFactory();
 
             var repo = new EntityFrameworkRepository(new AmbientDbContextLocator());

@@ -5,26 +5,30 @@ using System.Linq;
 using WebEx.Interfaces.Models;
 using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.Models.Enums;
+using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.Data
 {
     public class ExDataContext : DbContext
     {
-        public ExDataContext()
+        readonly ISession _session;
+
+        public ExDataContext(ISession session)
             : base("name=Default")
         {
+            _session = session;
         }
 
-        public virtual DbSet<Address> Addresses { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Country> Countries { get; set; }
-        public virtual DbSet<Email> Emails { get; set; }
-        public virtual DbSet<Note> Notes { get; set; }
-        public virtual DbSet<Organization> Organizations { get; set; }
-        public virtual DbSet<Person> People { get; set; }
-        public virtual DbSet<Phone> Phones { get; set; }
-        public virtual DbSet<StateProvince> StateProvinces { get; set; }
-        public virtual DbSet<Website> Websites { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<Note> Notes { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<Phone> Phones { get; set; }
+        public DbSet<StateProvince> StateProvinces { get; set; }
+        public DbSet<Website> Websites { get; set; }
 
         public override int SaveChanges()
         {
@@ -39,14 +43,14 @@ namespace WebEx.Data
                         archivable.IsCurrent = true;
                         archivable.State = ArchiveState.Added;
                         archivable.AuditLog.TimeStamp = DateTime.UtcNow;
-                        archivable.AuditLog.UserName = "GetSomehowAdded...";
+                        archivable.AuditLog.UserName = _session.UserName;
                         break;
                     case EntityState.Modified:
                         var cloned = entity.Entity.Clone() as IArchivable;
                         cloned.State = ArchiveState.Modified;
                         cloned.IsCurrent = true;
                         cloned.AuditLog.TimeStamp = DateTime.UtcNow;
-                        cloned.AuditLog.UserName = "GetSomehowModified...";
+                        cloned.AuditLog.UserName = _session.UserName;
                         cloned.ParentId = entity.Entity.Id;
                         cloned.BaseParentId = cloned.BaseParentId ?? entity.Entity.Id;
                         cloned.Id = 0;
@@ -64,7 +68,7 @@ namespace WebEx.Data
                         deleted.IsCurrent = true;
                         deleted.IsRemoved = true;
                         deleted.AuditLog.TimeStamp = DateTime.UtcNow;
-                        deleted.AuditLog.UserName = "GetSomehowDeleted...";
+                        deleted.AuditLog.UserName = _session.UserName;
                         deleted.ParentId = entity.Entity.Id;
                         deleted.BaseParentId = deleted.BaseParentId ?? entity.Entity.Id;
                         deleted.Id = 0;

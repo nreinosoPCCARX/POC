@@ -60,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\WebEx.Components\WebEx.Components.csproj">
+      <Project>{29a13b38-9311-45bf-92e8-3a667aea04f0}</Project>
+      <Name>WebEx.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\WebEx.Data\WebEx.Data.csproj">
       <Project>{ea8807fd-aee8-4bfb-87f5-0e78d54c4af5}</Project>
       <Name>WebEx.Data</Name>

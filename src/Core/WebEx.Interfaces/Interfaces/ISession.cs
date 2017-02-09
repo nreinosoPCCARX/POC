@@ -8,6 +8,6 @@ namespace WebEx.Interfaces.Interfaces
 {
     public interface ISession
     {
-
+        string UserName { get; set; }
     }
 }

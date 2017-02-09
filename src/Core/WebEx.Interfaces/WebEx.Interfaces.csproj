@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\Components\ILogger.cs" />
-    <Compile Include="Interfaces\Components\IModuleLoader.cs" />
+    <Compile Include="Interfaces\Components\IUserSessionManager.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="Interfaces\Modules\IModule.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebEx.Interfaces.Interfaces.Components
 {
-    public interface IModuleLoader
+    public interface IUserSessionManager
     {
-        void LoadModules();
+        void Loggin(string userName);
     }
 }

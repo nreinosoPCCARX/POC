@@ -1,4 +1,6 @@
-﻿using WebEx.DbContextScope.Interfaces;
+﻿using System.Runtime.Remoting.Messaging;
+using WebEx.DbContextScope.Interfaces;
+using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.DbContextScope
 {
@@ -6,7 +8,8 @@ namespace WebEx.DbContextScope
     {
         public IDbContextScope Create()
         {
-            return new DbContextScope();
+            var session = CallContext.LogicalGetData("UserSession") as ISession;
+            return new DbContextScope(session);
         }
     }
 }

@@ -28,11 +28,6 @@ namespace WebEx.Data
             }
         }
 
-        public IEnumerable<T> Find<T>() where T : class
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             throw new NotImplementedException();

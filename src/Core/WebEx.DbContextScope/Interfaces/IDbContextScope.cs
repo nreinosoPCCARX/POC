@@ -1,4 +1,5 @@
 ﻿using System;
+using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.DbContextScope.Interfaces
 {
@@ -7,5 +8,7 @@ namespace WebEx.DbContextScope.Interfaces
         int SaveChanges();
 
         IDbContextCollection DbContexts { get; }
+
+        ISession Session { get; }
     }
 }

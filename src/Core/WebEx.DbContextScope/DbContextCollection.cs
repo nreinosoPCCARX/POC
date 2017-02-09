@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using WebEx.DbContextScope.Interfaces;
+using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.DbContextScope
 {
@@ -11,11 +12,13 @@ namespace WebEx.DbContextScope
 
         bool _disposed;
         bool _completed;
+        ISession _session;
 
-        public DbContextCollection()
+        public DbContextCollection(ISession session)
         {
             _disposed = false;
             _completed = false;
+            _session = session;
 
             _dbContexts = new Dictionary<Type, DbContext>();
         }
@@ -46,7 +49,7 @@ namespace WebEx.DbContextScope
 
             if(!_dbContexts.ContainsKey(type))
             {
-                var dbContext = Activator.CreateInstance<TDbContext>();
+                var dbContext = (TDbContext)Activator.CreateInstance(type, _session);
                 _dbContexts.Add(type, dbContext);
             }
 

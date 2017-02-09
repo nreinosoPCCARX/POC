@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using WebEx.DbContextScope.Interfaces;
+using WebEx.Interfaces.Interfaces;
 
 namespace WebEx.DbContextScope
 {
@@ -17,10 +18,13 @@ namespace WebEx.DbContextScope
 
         public IDbContextCollection DbContexts { get; private set; }
 
-        public DbContextScope()
+        public ISession Session { get; private set; }
+
+        public DbContextScope(ISession session)
         {
             _disposed = false;
             _completed = false;
+            Session = session;
 
             _parentScope = GetAmbientScope();
             if(_parentScope != null)
@@ -31,7 +35,7 @@ namespace WebEx.DbContextScope
             else
             {
                 _nested = false;
-                DbContexts = new DbContextCollection();
+                DbContexts = new DbContextCollection(Session);
             }
 
             SetAmbientScope(this);
