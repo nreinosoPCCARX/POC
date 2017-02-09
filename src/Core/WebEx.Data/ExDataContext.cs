@@ -75,10 +75,10 @@ namespace WebEx.Data
                             deleted.Id = 0;
                             Set(deleted.GetType()).Add(deleted);
 
+                            entity.State = EntityState.Modified;
                             entity.CurrentValues.SetValues(entity.OriginalValues);
                             var parent = entity.Entity as IArchivable;
                             parent.IsCurrent = false;
-                            entity.State = EntityState.Modified;
                             break;
                     }
                 }

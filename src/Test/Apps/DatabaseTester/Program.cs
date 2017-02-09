@@ -57,6 +57,26 @@ namespace DatabaseTester
                 }
             }
 
+            using (var scope = factory.Create())
+            {
+                var bob = repo.GetAll<Person>(false, false).FirstOrDefault();
+
+                if (bob != null)
+                {
+                    repo.Remove(bob);
+                }
+            }
+
+            using (var scope = factory.Create())
+            {
+                var bob = repo.Find<Person>(c => c.IsRemoved, true).FirstOrDefault();
+
+                if (bob != null)
+                {
+                    repo.Replace(bob);
+                }
+            }
+
             Console.WriteLine("Press Enter to Exit");
             Console.ReadLine();
         }
