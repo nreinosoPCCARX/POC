@@ -8,6 +8,8 @@ namespace WebEx.Interfaces.Interfaces.Components
 {
     public interface IUserSessionManager
     {
+        ISession CurrentSession { get; }
+
         void Loggin(string userName);
     }
 }

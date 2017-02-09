@@ -41,6 +41,10 @@
       <HintPath>..\..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -60,14 +64,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\WebEx.Components\WebEx.Components.csproj">
-      <Project>{29a13b38-9311-45bf-92e8-3a667aea04f0}</Project>
-      <Name>WebEx.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\WebEx.Data\WebEx.Data.csproj">
-      <Project>{ea8807fd-aee8-4bfb-87f5-0e78d54c4af5}</Project>
-      <Name>WebEx.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\WebEx.DbContextScope\WebEx.DbContextScope.csproj">
       <Project>{91a896a0-aa77-43df-b948-6373e4ed3ed3}</Project>
       <Name>WebEx.DbContextScope</Name>
@@ -75,6 +71,10 @@
     <ProjectReference Include="..\..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\WebEx.IoC\WebEx.IoC.csproj">
+      <Project>{2b69f1f1-5f85-4a46-a732-8424236d5437}</Project>
+      <Name>WebEx.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

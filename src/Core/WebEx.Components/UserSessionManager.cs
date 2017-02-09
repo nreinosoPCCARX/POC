@@ -6,9 +6,27 @@ namespace WebEx.Components
 {
     public class UserSessionManager : IUserSessionManager
     {
+        static object syncObject = new object();
+
+        static ISession _currentSession;
+
+        public ISession CurrentSession
+        {
+            get
+            {
+                lock(syncObject)
+                {
+                    return _currentSession;
+                }
+            }
+        }
+
         public void Loggin(string userName)
         {
-            CallContext.LogicalSetData("UserSession", new Session { UserName = userName });
+            lock(syncObject)
+            {
+                _currentSession = new Session { UserName = userName };
+            }
         }
     }
 

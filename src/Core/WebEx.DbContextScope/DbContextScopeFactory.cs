@@ -1,15 +1,20 @@
-﻿using System.Runtime.Remoting.Messaging;
-using WebEx.DbContextScope.Interfaces;
-using WebEx.Interfaces.Interfaces;
+﻿using WebEx.DbContextScope.Interfaces;
+using WebEx.Interfaces.Interfaces.Components;
 
 namespace WebEx.DbContextScope
 {
     public class DbContextScopeFactory : IDbContextScopeFactory
     {
+        readonly IUserSessionManager _sessionManager;
+
+        public DbContextScopeFactory(IUserSessionManager sessionMgr)
+        {
+            _sessionManager = sessionMgr;
+        }
+
         public IDbContextScope Create()
         {
-            var session = CallContext.LogicalGetData("UserSession") as ISession;
-            return new DbContextScope(session);
+            return new DbContextScope(_sessionManager.CurrentSession);
         }
     }
 }

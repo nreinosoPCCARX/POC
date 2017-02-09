@@ -61,6 +61,14 @@
       <Project>{29a13b38-9311-45bf-92e8-3a667aea04f0}</Project>
       <Name>WebEx.Components</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebEx.Data\WebEx.Data.csproj">
+      <Project>{ea8807fd-aee8-4bfb-87f5-0e78d54c4af5}</Project>
+      <Name>WebEx.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebEx.DbContextScope\WebEx.DbContextScope.csproj">
+      <Project>{91a896a0-aa77-43df-b948-6373e4ed3ed3}</Project>
+      <Name>WebEx.DbContextScope</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebEx.Interfaces\WebEx.Interfaces.csproj">
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Ninject;
+using System;
 using System.Diagnostics;
 using System.Linq;
-using WebEx.Components;
-using WebEx.Data;
-using WebEx.DbContextScope;
+using WebEx.DbContextScope.Interfaces;
+using WebEx.Interfaces.Interfaces.Components;
 using WebEx.Interfaces.Models;
+using WebEx.Interfaces.WebEx.Interfaces;
+using WebEx.IoC;
 
 namespace DatabaseTester
 {
@@ -12,13 +14,13 @@ namespace DatabaseTester
     {
         public static void Main()
         {
-            var sessionManager = new UserSessionManager();
+            var booty = Bootstrapper.BuildKernel();
 
-            sessionManager.Loggin("Bob");
+            var userSessionMgr = booty.Get<IUserSessionManager>();
 
-            var factory = new DbContextScopeFactory();
+            var factory = booty.Get<IDbContextScopeFactory>();
 
-            var repo = new EntityFrameworkRepository(new AmbientDbContextLocator());
+            var repo = booty.Get<IRepository>();
 
             for (int i = 0; i < 5; i++)
             {
@@ -27,6 +29,8 @@ namespace DatabaseTester
                 sw.Start();
 
                 var counter = 0;
+
+                userSessionMgr.Loggin($"Bob = {Guid.NewGuid()}");
 
                 using (var scope = factory.Create())
                 {
