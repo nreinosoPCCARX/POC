@@ -4,45 +4,38 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{719CC4A5-F5DA-49EE-B1B0-D6F75DAC172C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0B6710D6-3644-41D3-B21A-367E02596D6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DatabaseTester</RootNamespace>
-    <AssemblyName>DatabaseTester</AssemblyName>
+    <RootNamespace>WebEx.DataModule</RootNamespace>
+    <AssemblyName>WebEx.DataModule</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)Out\Test\Apps\$(Configuration)</OutputPath>
+    <OutputPath>$(SolutionDir)Out\Run\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)Out\Test\Apps\$(Configuration)</OutputPath>
+    <OutputPath>$(SolutionDir)Out\Run\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -56,33 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\TestThing.cs" />
+    <Compile Include="SecondaryDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\WebEx.Data\WebEx.Data.csproj">
-      <Project>{ea8807fd-aee8-4bfb-87f5-0e78d54c4af5}</Project>
-      <Name>WebEx.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\WebEx.DbContextScope\WebEx.DbContextScope.csproj">
+    <ProjectReference Include="..\..\Core\WebEx.DbContextScope\WebEx.DbContextScope.csproj">
       <Project>{91a896a0-aa77-43df-b948-6373e4ed3ed3}</Project>
       <Name>WebEx.DbContextScope</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
+    <ProjectReference Include="..\..\Core\WebEx.Interfaces\WebEx.Interfaces.csproj">
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\WebEx.IoC\WebEx.IoC.csproj">
-      <Project>{2b69f1f1-5f85-4a46-a732-8424236d5437}</Project>
-      <Name>WebEx.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Modules\WebEx.DataModule\WebEx.DataModule.csproj">
-      <Project>{0b6710d6-3644-41d3-b21a-367e02596d6c}</Project>
-      <Name>WebEx.DataModule</Name>
+    <ProjectReference Include="..\..\Core\WebEx.Util\WebEx.Util.csproj">
+      <Project>{e5c4e6ee-df10-4669-8464-d77f03cec22b}</Project>
+      <Name>WebEx.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

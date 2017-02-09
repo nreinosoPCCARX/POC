@@ -50,18 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AmbientDbContextLocator.cs" />
-    <Compile Include="DbContextCollection.cs" />
-    <Compile Include="DbContextScope.cs" />
-    <Compile Include="DbContextScopeFactory.cs" />
-    <Compile Include="EntityFrameworkRepository.cs" />
+    <Compile Include="DbContextBase.cs" />
+    <Compile Include="DbContextScope\AmbientDbContextLocator.cs" />
+    <Compile Include="DbContextScope\DbContextCollection.cs" />
+    <Compile Include="DbContextScope\DbContextScope.cs" />
+    <Compile Include="DbContextScope\DbContextScopeFactory.cs" />
+    <Compile Include="Repositories\EntityFrameworkRepository.cs" />
     <Compile Include="Interfaces\IAmbientDbContextLocator.cs" />
     <Compile Include="Interfaces\IDbContextCollection.cs" />
     <Compile Include="Interfaces\IDbContextScope.cs" />
     <Compile Include="Interfaces\IDbContextScopeFactory.cs" />
     <Compile Include="Interfaces\IRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryFactory.cs" />
+    <Compile Include="Repositories\RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -3,6 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using WebEx.Data;
+using WebEx.DataModule;
+using WebEx.DataModule.Models;
 using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Interfaces.Components;
 using WebEx.Interfaces.Models;
@@ -18,6 +20,14 @@ namespace DatabaseTester
             var booty = Bootstrapper.BuildKernel();
             var userSessionMgr = booty.Get<IUserSessionManager>();
             var factory = booty.Get<IDbContextScopeFactory>();
+
+            using (var scope = factory.Create())
+            {
+                var repo = scope.DbContexts.GetRepository<SecondaryDbContext>();
+                repo.Add(new TestThing() { Bob = "Weeeeee" });
+                var repo2 = scope.DbContexts.GetRepository<ExDataContext>();
+                repo2.Remove(repo2.GetAll<Person>(false, false).FirstOrDefault());
+            }
 
             for (int i = 0; i < 2; i++)
             {
@@ -52,7 +62,7 @@ namespace DatabaseTester
                 var repo = scope.DbContexts.GetRepository<ExDataContext>();
                 var bob = repo.Find<Person>(c => !c.IsCurrent).FirstOrDefault();
 
-                if(bob!= null)
+                if (bob != null)
                 {
                     repo.Unarchive(bob);
                 }
