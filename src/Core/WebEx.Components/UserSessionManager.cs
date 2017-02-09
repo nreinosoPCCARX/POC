@@ -1,5 +1,4 @@
-﻿using System.Runtime.Remoting.Messaging;
-using WebEx.Interfaces.Interfaces;
+﻿using WebEx.Interfaces.Interfaces;
 using WebEx.Interfaces.Interfaces.Components;
 
 namespace WebEx.Components
