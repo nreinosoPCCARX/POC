@@ -26,6 +26,10 @@ namespace WebEx.Interfaces
             IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate, bool includeRemoved) where T : class, IRemovable;
 
             void Remove<T>(T entity) where T : class, IDomain;
+
+            void Unarchive<T>(T entity) where T : class, IArchivable;
+
+            void Replace<T>(T entity) where T : class, IRemovable;
         }
     }
 

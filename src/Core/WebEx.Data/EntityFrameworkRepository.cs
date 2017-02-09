@@ -105,5 +105,44 @@ namespace WebEx.Data
 
             return context.Set<T>().Where(predicate).AsEnumerable();
         }
+
+        public void Unarchive<T>(T entity) 
+            where T : class, IArchivable
+        {
+            if(!entity.IsCurrent)
+            {
+                var context = _dbContextLocator.Get<ExDataContext>();
+
+                context.DisableAuditing = true;
+
+                var currentEntity = default(T);
+
+                if(entity.BaseParentId == null)
+                {
+                    currentEntity = Find<T>(e => e.IsCurrent && e.BaseParentId == entity.Id).FirstOrDefault();
+                }
+                else
+                {
+                    currentEntity = Find<T>(e => e.IsCurrent && e.BaseParentId == entity.BaseParentId).FirstOrDefault();
+                }
+
+                if(currentEntity != null)
+                {
+                    currentEntity.IsCurrent = false;
+                }
+
+                entity.IsCurrent = true;
+            }
+        }
+
+        public void Replace<T>(T entity) 
+            where T : class, IRemovable
+        {
+            if(entity.IsRemoved)
+            {                
+                var context = _dbContextLocator.Get<ExDataContext>();
+                entity.IsRemoved = false;
+            }
+        }
     }
 }

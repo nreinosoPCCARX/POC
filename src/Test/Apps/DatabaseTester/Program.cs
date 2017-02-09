@@ -1,6 +1,7 @@
 ﻿using Ninject;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Interfaces.Components;
 using WebEx.Interfaces.Models;
@@ -19,7 +20,7 @@ namespace DatabaseTester
             var factory = booty.Get<IDbContextScopeFactory>();
             var repo = booty.Get<IRepository>();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
                 var counter = 0;
                 userSessionMgr.Loggin($"Bob = {Guid.NewGuid()}");
@@ -42,6 +43,18 @@ namespace DatabaseTester
                 sw.Stop();
 
                 Console.WriteLine($"Done with {counter} records in {sw.ElapsedMilliseconds} ms");
+            }
+
+            userSessionMgr.Loggin($"Bob Unarchive");
+
+            using (var scope = factory.Create())
+            {
+                var bob = repo.Find<Person>(c => !c.IsCurrent).FirstOrDefault();
+
+                if(bob!= null)
+                {
+                    repo.Unarchive(bob);
+                }
             }
 
             Console.WriteLine("Press Enter to Exit");

@@ -51,5 +51,15 @@ namespace WebEx.API.MockData
         {
             throw new NotImplementedException();
         }
+
+        void IRepository.Replace<T>(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository.Unarchive<T>(T entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
