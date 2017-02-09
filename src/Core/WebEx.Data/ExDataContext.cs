@@ -1,7 +1,5 @@
 using System;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using WebEx.Interfaces.Models;
 using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.Models.Enums;
@@ -19,6 +17,8 @@ namespace WebEx.Data
             _session = session;
         }
 
+        public bool DisableAuditing { get; set; }
+
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -32,54 +32,55 @@ namespace WebEx.Data
 
         public override int SaveChanges()
         {
-            ChangeTracker.DetectChanges();
-
-            foreach (var entity in ChangeTracker.Entries<IArchivable>())
+            if (!DisableAuditing)
             {
-                switch (entity.State)
+                ChangeTracker.DetectChanges();
+
+                foreach (var entity in ChangeTracker.Entries<IArchivable>())
                 {
-                    case EntityState.Added:
-                        var archivable = entity.Entity as IArchivable;
-                        archivable.IsCurrent = true;
-                        archivable.State = ArchiveState.Added;
-                        archivable.AuditLog.TimeStamp = DateTime.UtcNow;
-                        archivable.AuditLog.UserName = _session.UserName;
-                        break;
-                    case EntityState.Modified:
-                        var cloned = entity.Entity.Clone() as IArchivable;
-                        cloned.State = ArchiveState.Modified;
-                        cloned.IsCurrent = true;
-                        cloned.AuditLog.TimeStamp = DateTime.UtcNow;
-                        cloned.AuditLog.UserName = _session.UserName;
-                        cloned.ParentId = entity.Entity.Id;
-                        cloned.BaseParentId = cloned.BaseParentId ?? entity.Entity.Id;
-                        cloned.Id = 0;
-                        Set(cloned.GetType()).Add(cloned);
+                    switch (entity.State)
+                    {
+                        case EntityState.Added:
+                            var archivable = entity.Entity as IArchivable;
+                            archivable.IsCurrent = true;
+                            archivable.State = ArchiveState.Added;
+                            archivable.AuditLog.TimeStamp = DateTime.UtcNow;
+                            archivable.AuditLog.UserName = _session?.UserName;
+                            break;
+                        case EntityState.Modified:
+                            var cloned = entity.Entity.Clone() as IArchivable;
+                            cloned.State = ArchiveState.Modified;
+                            cloned.IsCurrent = true;
+                            cloned.AuditLog.TimeStamp = DateTime.UtcNow;
+                            cloned.AuditLog.UserName = _session?.UserName;
+                            cloned.ParentId = entity.Entity.Id;
+                            cloned.BaseParentId = cloned.BaseParentId ?? entity.Entity.Id;
+                            cloned.Id = 0;
+                            Set(cloned.GetType()).Add(cloned);
 
-                        entity.CurrentValues.SetValues(entity.OriginalValues);
-                        //entity.Reload();
-                        var changed = entity.Entity as IArchivable;
-                        changed.IsCurrent = false;
-                        entity.State = EntityState.Modified;
-                        break;
-                    case EntityState.Deleted:
-                        var deleted = entity.Entity.Clone() as IArchivable;
-                        deleted.State = ArchiveState.Removed;
-                        deleted.IsCurrent = true;
-                        deleted.IsRemoved = true;
-                        deleted.AuditLog.TimeStamp = DateTime.UtcNow;
-                        deleted.AuditLog.UserName = _session.UserName;
-                        deleted.ParentId = entity.Entity.Id;
-                        deleted.BaseParentId = deleted.BaseParentId ?? entity.Entity.Id;
-                        deleted.Id = 0;
-                        Set(deleted.GetType()).Add(deleted);
+                            entity.CurrentValues.SetValues(entity.OriginalValues);
+                            var changed = entity.Entity as IArchivable;
+                            changed.IsCurrent = false;
+                            entity.State = EntityState.Modified;
+                            break;
+                        case EntityState.Deleted:
+                            var deleted = entity.Entity.Clone() as IArchivable;
+                            deleted.State = ArchiveState.Removed;
+                            deleted.IsCurrent = true;
+                            deleted.IsRemoved = true;
+                            deleted.AuditLog.TimeStamp = DateTime.UtcNow;
+                            deleted.AuditLog.UserName = _session?.UserName;
+                            deleted.ParentId = entity.Entity.Id;
+                            deleted.BaseParentId = deleted.BaseParentId ?? entity.Entity.Id;
+                            deleted.Id = 0;
+                            Set(deleted.GetType()).Add(deleted);
 
-                        entity.CurrentValues.SetValues(entity.OriginalValues);
-                        //entity.Reload();
-                        var parent = entity.Entity as IArchivable;
-                        parent.IsCurrent = false;
-                        entity.State = EntityState.Modified;
-                        break;
+                            entity.CurrentValues.SetValues(entity.OriginalValues);
+                            var parent = entity.Entity as IArchivable;
+                            parent.IsCurrent = false;
+                            entity.State = EntityState.Modified;
+                            break;
+                    }
                 }
             }
 

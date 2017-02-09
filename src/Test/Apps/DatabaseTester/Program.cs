@@ -1,7 +1,6 @@
 ﻿using Ninject;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Interfaces.Components;
 using WebEx.Interfaces.Models;
@@ -14,23 +13,18 @@ namespace DatabaseTester
     {
         public static void Main()
         {
+            //set up IoC framework
             var booty = Bootstrapper.BuildKernel();
-
             var userSessionMgr = booty.Get<IUserSessionManager>();
-
             var factory = booty.Get<IDbContextScopeFactory>();
-
             var repo = booty.Get<IRepository>();
 
             for (int i = 0; i < 5; i++)
             {
-                var sw = new Stopwatch();
-
-                sw.Start();
-
                 var counter = 0;
-
                 userSessionMgr.Loggin($"Bob = {Guid.NewGuid()}");
+
+                var sw = Stopwatch.StartNew();
 
                 using (var scope = factory.Create())
                 {
@@ -44,6 +38,7 @@ namespace DatabaseTester
                         counter++;
                     }
                 }
+
                 sw.Stop();
 
                 Console.WriteLine($"Done with {counter} records in {sw.ElapsedMilliseconds} ms");
