@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebEx.Data;
+using WebEx.DbContextScope;
 using WebEx.Interfaces.Models;
 
 namespace DatabaseTester
@@ -12,19 +9,22 @@ namespace DatabaseTester
     {
         public static void Main()
         {
-            var repo = new EntityFrameworkRepository(null);
+            var factory = new DbContextScopeFactory();
 
-            repo.Add(new Person { FirstName = "Weeeeeeeeeeeeeeee" });
+            var repo = new EntityFrameworkRepository(new AmbientDbContextLocator());
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
-                foreach (var person in repo.GetAll<Person>().Where(p => p.IsCurrent))
+                using (var scope = factory.Create())
                 {
-                    Console.WriteLine($"Persion Id = {person.Id}");
+                    repo.Add(new Person { FirstName = "Weeeeeeeeeeeeeeee" });
 
-                    person.NickName = $"{i}___WEEEEEeeeeeee {DateTime.Now.ToString()}";
+                    foreach (var person in repo.GetAll<Person>())
+                    {
+                        Console.WriteLine($"Persion Id = {person.Id}");
 
-                    repo.Update(person);
+                        person.NickName = $"{Guid.NewGuid()}___WEEEEEeeeeeee {DateTime.Now.ToString()}";
+                    }
                 }
             }
 

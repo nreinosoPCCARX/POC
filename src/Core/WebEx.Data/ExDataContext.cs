@@ -52,8 +52,8 @@ namespace WebEx.Data
                         cloned.Id = 0;
                         Set(cloned.GetType()).Add(cloned);
 
-                        //entity.CurrentValues.SetValues(entity.OriginalValues);
-                        entity.Reload();
+                        entity.CurrentValues.SetValues(entity.OriginalValues);
+                        //entity.Reload();
                         var changed = entity.Entity as IArchivable;
                         changed.IsCurrent = false;
                         entity.State = EntityState.Modified;
@@ -70,8 +70,8 @@ namespace WebEx.Data
                         deleted.Id = 0;
                         Set(deleted.GetType()).Add(deleted);
 
-                        //entity.CurrentValues.SetValues(entity.OriginalValues);
-                        entity.Reload();
+                        entity.CurrentValues.SetValues(entity.OriginalValues);
+                        //entity.Reload();
                         var parent = entity.Entity as IArchivable;
                         parent.IsCurrent = false;
                         entity.State = EntityState.Modified;

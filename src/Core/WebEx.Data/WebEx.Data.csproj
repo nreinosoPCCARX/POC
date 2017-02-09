@@ -54,13 +54,15 @@
     <Compile Include="EntityFrameworkRepository.cs" />
     <Compile Include="ExDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWork\EntityFrameworkUnitOfWork.cs" />
-    <Compile Include="UnitOfWork\EntityFrameworkUnitOfWorkProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebEx.DbContextScope\WebEx.DbContextScope.csproj">
+      <Project>{91a896a0-aa77-43df-b948-6373e4ed3ed3}</Project>
+      <Name>WebEx.DbContextScope</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebEx.Interfaces\WebEx.Interfaces.csproj">
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>

@@ -38,7 +38,7 @@ namespace WebEx.API.Controllers
         // PUT: api/People/5
         public void Put(long personId, [FromBody]Person person)
         {
-            repo.Update(person);
+            //repo.Update(person);
         }
 
         //// DELETE: api/People/5

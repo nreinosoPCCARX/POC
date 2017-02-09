@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using WebEx.Data;
-using WebEx.Data.UnitOfWork;
-using WebEx.Interfaces.Interfaces;
+using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.WebEx.Interfaces;
 
@@ -15,23 +10,21 @@ namespace WebEx.Data
 {
     public class EntityFrameworkRepository : IRepository
     {
-        private EntityFrameworkUnitOfWork _unitOfWork;
+        IAmbientDbContextLocator _dbContextLocator;
 
-        public EntityFrameworkRepository(IUnitOfWork unitOfWork)
+        public EntityFrameworkRepository(IAmbientDbContextLocator dbContextLocator)
         {
-            _unitOfWork = (EntityFrameworkUnitOfWork)unitOfWork;
+            _dbContextLocator = dbContextLocator;
         }
 
         public void Add<T>(T entity) where T : class
         {
-            using (var context = new ExDataContext())
+            var context = _dbContextLocator.Get<ExDataContext>();
+
+            var dbSet = context.Set<T>();
+            if (dbSet != null)
             {
-                var dbSet = context.Set<T>();
-                if (dbSet != null)
-                {
-                    dbSet.Add(entity);
-                    context.SaveChanges();
-                }
+                dbSet.Add(entity);
             }
         }
 
@@ -47,51 +40,30 @@ namespace WebEx.Data
 
         public IEnumerable<T> GetAll<T>() where T : class
         {
-            using (var context = new ExDataContext())
+            var context = _dbContextLocator.Get<ExDataContext>();
+
+            foreach (var entity in context.Set<T>().AsEnumerable())
             {
-                foreach (var entity in context.Set<T>().AsEnumerable())
-                {
-                    yield return entity;
-                }
+                yield return entity;
             }
         }
 
         public T GetById<T>(long id) where T : class, IDomain
         {
-            using (var context = new ExDataContext())
-            {
-                return context.Set<T>().SingleOrDefault(e => e.Id == id);
-            }
+            var context = _dbContextLocator.Get<ExDataContext>();
+
+            return context.Set<T>().SingleOrDefault(e => e.Id == id);
         }
 
         public void Remove<T>(T entity) where T : class
         {
-            using (var context = new ExDataContext())
-            {
-                var dbSet = context.Set<T>();
-                if (dbSet != null)
-                {
-                    dbSet.Attach(entity);
-                    dbSet.Remove(entity);
-                    context.SaveChanges();
-                }
-            }
-        }
+            var context = _dbContextLocator.Get<ExDataContext>();
 
-        public void Update<T>(T entity) where T : class
-        {
-            using (var context = new ExDataContext())
+            var dbSet = context.Set<T>();
+            if (dbSet != null)
             {
-                var dbSet = context.Set<T>();
-                if (dbSet != null)
-                {
-                    var attached = dbSet.Attach(entity);
-                    context.Entry(attached).State = EntityState.Modified;
-                    context.SaveChanges();
-                }
+                dbSet.Remove(entity);
             }
         }
     }
-
-
 }
