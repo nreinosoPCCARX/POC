@@ -67,6 +67,10 @@
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebEx.Util\WebEx.Util.csproj">
+      <Project>{e5c4e6ee-df10-4669-8464-d77f03cec22b}</Project>
+      <Name>WebEx.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,46 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
-using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.WebEx.Interfaces;
 
 namespace WebEx.API.MockData
 {
     public class MockDbContext : IRepository
     {
-        public void Add<T>(T entity) where T : class
+        void IRepository.Add<T>(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> Find<T>() where T : class
+        IEnumerable<T> IRepository.Find<T>(Expression<Func<T, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class
+        IEnumerable<T> IRepository.Find<T>(Expression<Func<T, bool>> predicate, bool includeRemoved)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll<T>() where T : class
+        IEnumerable<T> IRepository.Find<T>(Expression<Func<T, bool>> predicate, bool includeRemoved, bool includeArchived)
         {
             throw new NotImplementedException();
         }
 
-        public T GetById<T>(long id) where T : class, IDomain
+        IEnumerable<T> IRepository.GetAll<T>()
         {
             throw new NotImplementedException();
         }
 
-        public void Remove<T>(T entity) where T : class
+        IEnumerable<T> IRepository.GetAll<T>(bool includeRemoved)
         {
             throw new NotImplementedException();
         }
 
-        public void Update<T>(T entity) where T : class
+        IEnumerable<T> IRepository.GetAll<T>(bool includeRemoved, bool includeArchived)
+        {
+            throw new NotImplementedException();
+        }
+
+        T IRepository.GetById<T>(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository.Remove<T>(T entity)
         {
             throw new NotImplementedException();
         }

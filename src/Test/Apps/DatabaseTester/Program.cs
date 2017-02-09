@@ -36,7 +36,7 @@ namespace DatabaseTester
                 {
                     repo.Add(new Person { FirstName = "Weeeeeeeeeeeeeeee" });
 
-                    foreach (var person in repo.GetAll<Person>().Where(p => p.IsCurrent))
+                    foreach (var person in repo.GetAll<Person>(false, false))
                     {
                         Console.WriteLine($"Persion Id = {person.Id}");
 
