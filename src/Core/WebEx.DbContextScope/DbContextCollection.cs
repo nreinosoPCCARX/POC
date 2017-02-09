@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Interfaces;
+using WebEx.Interfaces.WebEx.Interfaces;
 
 namespace WebEx.DbContextScope
 {
     public class DbContextCollection : IDbContextCollection
     {
         Dictionary<Type, DbContext> _dbContexts;
+        readonly IRepositoryFactory _factory;
 
         bool _disposed;
         bool _completed;
         ISession _session;
 
-        public DbContextCollection(ISession session)
+        public DbContextCollection(ISession session, IRepositoryFactory factory)
         {
             _disposed = false;
             _completed = false;
             _session = session;
+            _factory = factory;
 
             _dbContexts = new Dictionary<Type, DbContext>();
         }
@@ -41,7 +44,12 @@ namespace WebEx.DbContextScope
             _disposed = true;
         }
 
-        public TDbContext Get<TDbContext>() where TDbContext : DbContext
+        public IRepository GetRepository<TDbContext>() where TDbContext : DbContext
+        {
+            return _factory.Create<TDbContext>();
+        }
+
+        public TDbContext GetContext<TDbContext>() where TDbContext : DbContext
         {
             if(_disposed) { throw new ObjectDisposedException(nameof(DbContextCollection)); }
 

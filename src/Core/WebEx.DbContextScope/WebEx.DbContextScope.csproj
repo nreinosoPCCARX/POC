@@ -54,11 +54,14 @@
     <Compile Include="DbContextCollection.cs" />
     <Compile Include="DbContextScope.cs" />
     <Compile Include="DbContextScopeFactory.cs" />
+    <Compile Include="EntityFrameworkRepository.cs" />
     <Compile Include="Interfaces\IAmbientDbContextLocator.cs" />
     <Compile Include="Interfaces\IDbContextCollection.cs" />
     <Compile Include="Interfaces\IDbContextScope.cs" />
     <Compile Include="Interfaces\IDbContextScopeFactory.cs" />
+    <Compile Include="Interfaces\IRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,6 +70,10 @@
     <ProjectReference Include="..\WebEx.Interfaces\WebEx.Interfaces.csproj">
       <Project>{ada6c696-0fc0-46e5-b03c-38851449926c}</Project>
       <Name>WebEx.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebEx.Util\WebEx.Util.csproj">
+      <Project>{e5c4e6ee-df10-4669-8464-d77f03cec22b}</Project>
+      <Name>WebEx.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

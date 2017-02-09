@@ -20,7 +20,7 @@ namespace WebEx.DbContextScope
 
         public ISession Session { get; private set; }
 
-        public DbContextScope(ISession session)
+        public DbContextScope(ISession session, IRepositoryFactory factory)
         {
             _disposed = false;
             _completed = false;
@@ -35,7 +35,7 @@ namespace WebEx.DbContextScope
             else
             {
                 _nested = false;
-                DbContexts = new DbContextCollection(Session);
+                DbContexts = new DbContextCollection(Session, factory);
             }
 
             SetAmbientScope(this);

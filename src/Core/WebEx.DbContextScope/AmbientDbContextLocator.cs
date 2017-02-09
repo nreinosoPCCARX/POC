@@ -11,7 +11,7 @@ namespace WebEx.DbContextScope
 
             if(ambientDbContextScope != null)
             {
-                return ambientDbContextScope.DbContexts.Get<TDbContext>();
+                return ambientDbContextScope.DbContexts.GetContext<TDbContext>();
             }
 
             return null;

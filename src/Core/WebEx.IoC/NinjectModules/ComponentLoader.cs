@@ -16,7 +16,7 @@ namespace WebEx.IoC.NinjectModules
             Bind<IUserSessionManager>().To<UserSessionManager>();
             Bind<IDbContextScopeFactory>().To<DbContextScopeFactory>();
             Bind<IAmbientDbContextLocator>().To<AmbientDbContextLocator>();
-            Bind<IRepository>().To<EntityFrameworkRepository>();
+            Bind<IRepositoryFactory>().To<RepositoryFactory>();
         }
     }
 }

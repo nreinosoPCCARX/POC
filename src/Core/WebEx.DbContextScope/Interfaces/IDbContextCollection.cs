@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Data.Entity;
+using WebEx.Interfaces.WebEx.Interfaces;
 
 namespace WebEx.DbContextScope.Interfaces
 {
     public interface IDbContextCollection : IDisposable
     {
-        TDbContext Get<TDbContext>() where TDbContext : DbContext;
+        IRepository GetRepository<TDbContext>() where TDbContext : DbContext;
+
+        TDbContext GetContext<TDbContext>() where TDbContext : DbContext;
 
         int Commit();
     }

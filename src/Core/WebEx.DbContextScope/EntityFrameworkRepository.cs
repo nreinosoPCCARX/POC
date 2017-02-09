@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using WebEx.DbContextScope.Interfaces;
@@ -7,9 +8,10 @@ using WebEx.Interfaces.Models.Interfaces;
 using WebEx.Interfaces.WebEx.Interfaces;
 using WebEx.Util;
 
-namespace WebEx.Data
+namespace WebEx.DbContextScope
 {
-    public class EntityFrameworkRepository : IRepository
+    public class EntityFrameworkRepository<TDbContext> : IRepository
+        where TDbContext : DbContext
     {
         IAmbientDbContextLocator _dbContextLocator;
 
@@ -21,7 +23,7 @@ namespace WebEx.Data
         public void Add<T>(T entity)
             where T : class, IDomain
         {
-            var context = _dbContextLocator.Get<ExDataContext>();
+            var context = _dbContextLocator.Get<TDbContext>();
 
             var dbSet = context.Set<T>();
             if (dbSet != null)
@@ -33,7 +35,7 @@ namespace WebEx.Data
         public void Remove<T>(T entity)
             where T : class, IDomain
         {
-            var context = _dbContextLocator.Get<ExDataContext>();
+            var context = _dbContextLocator.Get<TDbContext>();
 
             var dbSet = context.Set<T>();
             if (dbSet != null)
@@ -63,7 +65,7 @@ namespace WebEx.Data
         public T GetById<T>(long id)
             where T : class, IDomain
         {
-            var context = _dbContextLocator.Get<ExDataContext>();
+            var context = _dbContextLocator.Get<TDbContext>();
 
             return context.Set<T>().SingleOrDefault(e => e.Id == id);
         }
@@ -71,14 +73,14 @@ namespace WebEx.Data
         public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate)
             where T : class, IDomain
         {
-            var context = _dbContextLocator.Get<ExDataContext>();
+            var context = _dbContextLocator.Get<TDbContext>();
             return context.Set<T>().Where(predicate).AsEnumerable();
         }
 
         public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate, bool includeRemoved, bool includeArchived)
             where T : class, IArchivable
         {
-            var context = _dbContextLocator.Get<ExDataContext>();
+            var context = _dbContextLocator.Get<TDbContext>();
 
             if (!includeRemoved)
             {
@@ -96,7 +98,7 @@ namespace WebEx.Data
         public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate, bool includeRemoved)
             where T : class, IRemovable
         {
-            var context = _dbContextLocator.Get<ExDataContext>();
+            var context = _dbContextLocator.Get<TDbContext>();
 
             if (!includeRemoved)
             {
@@ -111,9 +113,7 @@ namespace WebEx.Data
         {
             if(!entity.IsCurrent)
             {
-                var context = _dbContextLocator.Get<ExDataContext>();
-
-                context.DisableAuditing = true;
+                var context = _dbContextLocator.Get<TDbContext>();
 
                 var currentEntity = default(T);
 
@@ -140,7 +140,7 @@ namespace WebEx.Data
         {
             if(entity.IsRemoved)
             {                
-                var context = _dbContextLocator.Get<ExDataContext>();
+                var context = _dbContextLocator.Get<TDbContext>();
                 entity.IsRemoved = false;
             }
         }

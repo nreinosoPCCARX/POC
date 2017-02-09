@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using WebEx.Data;
 using WebEx.DbContextScope.Interfaces;
 using WebEx.Interfaces.Interfaces.Components;
 using WebEx.Interfaces.Models;
@@ -18,7 +19,6 @@ namespace DatabaseTester
             var booty = Bootstrapper.BuildKernel();
             var userSessionMgr = booty.Get<IUserSessionManager>();
             var factory = booty.Get<IDbContextScopeFactory>();
-            var repo = booty.Get<IRepository>();
 
             for (int i = 0; i < 2; i++)
             {
@@ -29,6 +29,7 @@ namespace DatabaseTester
 
                 using (var scope = factory.Create())
                 {
+                    var repo = scope.DbContexts.GetRepository<ExDataContext>();
                     repo.Add(new Person { FirstName = "Weeeeeeeeeeeeeeee" });
 
                     foreach (var person in repo.GetAll<Person>(false, false))
@@ -49,6 +50,7 @@ namespace DatabaseTester
 
             using (var scope = factory.Create())
             {
+                var repo = scope.DbContexts.GetRepository<ExDataContext>();
                 var bob = repo.Find<Person>(c => !c.IsCurrent).FirstOrDefault();
 
                 if(bob!= null)
@@ -59,6 +61,7 @@ namespace DatabaseTester
 
             using (var scope = factory.Create())
             {
+                var repo = scope.DbContexts.GetRepository<ExDataContext>();
                 var bob = repo.GetAll<Person>(false, false).FirstOrDefault();
 
                 if (bob != null)
@@ -69,6 +72,7 @@ namespace DatabaseTester
 
             using (var scope = factory.Create())
             {
+                var repo = scope.DbContexts.GetRepository<ExDataContext>();
                 var bob = repo.Find<Person>(c => c.IsRemoved, true).FirstOrDefault();
 
                 if (bob != null)
